@@ -1,0 +1,8 @@
+poppler-utils
+tensorboard
+jsonargparse[signatures]
+tensorrt==8.5.1.7
+pytorch_lightning==1.8.6
+timm
+transformers==4.26.0
+datasets==2.11.0
