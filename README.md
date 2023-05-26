@@ -28,6 +28,12 @@ pip install -r requirements.txt
 ### Config
 Change config in ./config/train.cfg to suit your enviroments.
 Change path to config file in ./run_training.sh and ./run_inference.sh to suit your enviroments.
+### Resplit dataset
+We decided to randomly resplit dataset, 80% for train and 20% for validation to have better score.
+To randomly resplit dataset, change dataset_path in ./data_split.py and run:
+```
+python3 data_split.py
+```
 ### Train
 Run ./run_training.sh
 ```bash
