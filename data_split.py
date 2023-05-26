@@ -18,3 +18,5 @@ def data_split(data_path):
         f.write(json.dumps(l[:int(split)],ensure_ascii=False))
     with open (os.path.join(data_path,"val.json"),"w") as f:
         f.write(json.dumps(l[-(len(file)-int(split)):],ensure_ascii=False))
+    
+data_split("/home/tip2k4/docile/data/docile/data/docile")
