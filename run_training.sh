@@ -1,16 +1,12 @@
 #!/bin/bash
 
-# You can use this script to run NER baselines training. All of the trainings below use either
-# publicly available checkpoints (e.g., roberta-base or microsoft/layoutlmv3-base) or checkpoints
-# that can be produced with this script (some of them are provided with the docile dataset). To run
-# from your checkpoint instead, change the `--model_name` parameter. E.g., to train
-# "roberta_ours_with_synthetic_pretraining" from scratch, you should
-#  * run "roberta_pretraining",
-#  * change the path of `--model_name` in "roberta_ours_synthetic_pretraining" and run it,
-#  * change the path of `--model_name` in "roberta_ours_with_synthetic_pretraining" and run it.
-
 set -euo pipefail
-. /home/tip2k4/docile/data/docile/final/docile/config/train.cfg
+
+#Path to main.cfg
+. /home/tip2k4/docile/data/docile/final/docile/config/main.cfg
+
+
+
 # Set GPU device number to use, enforced with CUDA_VISIBLE_DEVICES=${GPU}
 GPU="${GPU_ID}"
 
