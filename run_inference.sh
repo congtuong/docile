@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -euo pipefail
-. /home/tip2k4/docile/data/docile/final/docile/config/inference.cfg/
+. /home/tip2k4/docile/data/docile/final/docile/config/main.cfg/
 # Set GPU device number to use, enforced with CUDA_VISIBLE_DEVICES=${GPU}
 GPU="${GPU_ID}"
 
