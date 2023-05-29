@@ -50,8 +50,8 @@ function run_training() {
 
   eval ${training_cmd}
 }
-
-
+TOKENIZERS_PARALLELISM=true
+# python -m 
 CMD_ROBERTA_PRETRAIN="docile_pretrain_BERT_onfly.py"
 CMD_ROBERTA="docile_train_NER_multilabel.py"
 
