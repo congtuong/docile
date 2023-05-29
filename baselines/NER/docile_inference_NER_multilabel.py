@@ -2,6 +2,8 @@ import argparse
 import dataclasses
 import json
 import os
+import sys
+sys.path.append(".")
 from datetime import datetime
 from pathlib import Path
 
