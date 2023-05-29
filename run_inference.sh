@@ -4,7 +4,7 @@ set -euo pipefail
 
 
 #Path to main.cfg
-. /home/tip2k4/docile/data/docile/final/docile/config/main.cfg/
+. ./config/main.cfg/
 
 
 
