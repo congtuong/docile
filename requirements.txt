@@ -1,7 +1,7 @@
 poppler-utils
 tensorboard
 jsonargparse[signatures]
-tensorrt==8.5.1.7
+pdf2image
 pytorch_lightning==1.8.6
 timm
 transformers==4.26.0
