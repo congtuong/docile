@@ -1,7 +1,8 @@
 import argparse
 from dataclasses import dataclass
 from typing import Optional, Sequence
-
+import sys
+sys.path.append('.')
 from docile.dataset import Field
 
 
