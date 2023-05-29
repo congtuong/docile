@@ -4,7 +4,7 @@ set -euo pipefail
 
 
 #Path to main.cfg
-. ./config/main.cfg/
+. ./config/main.cfg
 
 
 
@@ -51,7 +51,7 @@ function run_inference() {
 CUDA_VISIBLE_DEVICES=${GPU} python ${cmd}
     --split ${split}
     --docile_path ${DOCILE_PATH}
-    --checkpoint "${MODELS_DIR_PREFIX}/${checkpoint_subdir}"
+    --checkpoint "${MODELS_DIR_PREFIX}"
     --output_dir ${output_dir}
     --store_intermediate_results
     --merge_strategy new
@@ -64,58 +64,58 @@ EOF
 }
 
 
-CMD_ROBERTA="docile_inference_NER_multilabel.py"
-CMD_LAYOUTLMV3="docile_inference_NER_multilabel_layoutLMv3.py"
+CMD_ROBERTA="baselines/NER/docile_inference_NER_multilabel.py"
+# CMD_LAYOUTLMV3="docile_inference_NER_multilabel_layoutLMv3.py"
 
 single_run="lilt_base"
 if [[ " ${run} " =~ " ${single_run} " ]]; then
-  run_inference ${CMD_ROBERTA} $split roberta_base_65925 $single_run
+  run_inference ${CMD_ROBERTA} $split $MODELS_DIR_PREFIX $single_run
 fi
-single_run="roberta_base"
-if [[ " ${run} " =~ " ${single_run} " ]]; then
-  run_inference ${CMD_ROBERTA} $split roberta_base_65925 $single_run
-fi
+# single_run="roberta_base"
+# if [[ " ${run} " =~ " ${single_run} " ]]; then
+#   run_inference ${CMD_ROBERTA} $split roberta_base_65925 $single_run
+# fi
 
-single_run="roberta_ours"
-if [[ " ${run} " =~ " ${single_run} " ]]; then
-  run_inference ${CMD_ROBERTA} $split roberta_ours_133352 $single_run
-fi
+# single_run="roberta_ours"
+# if [[ " ${run} " =~ " ${single_run} " ]]; then
+#   run_inference ${CMD_ROBERTA} $split roberta_ours_133352 $single_run
+# fi
 
-single_run="layoutlmv3_base"
-if [[ " ${run} " =~ " ${single_run} " ]]; then
-  run_inference ${CMD_LAYOUTLMV3} $split layoutlmv3_base_62100 $single_run
-fi
+# single_run="layoutlmv3_base"
+# if [[ " ${run} " =~ " ${single_run} " ]]; then
+#   run_inference ${CMD_LAYOUTLMV3} $split layoutlmv3_base_62100 $single_run
+# fi
 
-single_run="layoutlmv3_ours"
-if [[ " ${run} " =~ " ${single_run} " ]]; then
-  run_inference ${CMD_LAYOUTLMV3} $split layoutlmv3_ours_320587 $single_run
-fi
+# single_run="layoutlmv3_ours"
+# if [[ " ${run} " =~ " ${single_run} " ]]; then
+#   run_inference ${CMD_LAYOUTLMV3} $split layoutlmv3_ours_320587 $single_run
+# fi
 
-# Use table-transformer predictions for table and/or Line Items
-single_run="roberta_base_detr_table"
-if [[ " ${run} " =~ " ${single_run} " ]]; then
-  extra_params="--table_transformer_predictions_dir ${TABLE_TRANSFORMER_PREDICTIONS_DIR} --crop_bboxes_filename docile_td11.json"
-  run_inference ${CMD_ROBERTA} $split roberta_base_65925 $single_run ${extra_params}
-fi
+# # Use table-transformer predictions for table and/or Line Items
+# single_run="roberta_base_detr_table"
+# if [[ " ${run} " =~ " ${single_run} " ]]; then
+#   extra_params="--table_transformer_predictions_dir ${TABLE_TRANSFORMER_PREDICTIONS_DIR} --crop_bboxes_filename docile_td11.json"
+#   run_inference ${CMD_ROBERTA} $split roberta_base_65925 $single_run ${extra_params}
+# fi
 
-single_run="roberta_base_detr_tableLI"
-if [[ " ${run} " =~ " ${single_run} " ]]; then
-  extra_params="--table_transformer_predictions_dir ${TABLE_TRANSFORMER_PREDICTIONS_DIR} --crop_bboxes_filename docile_td11.json --line_item_bboxes_filename docile_td11_tlid13.json"
-  run_inference ${CMD_ROBERTA} $split roberta_base_65925 $single_run ${extra_params}
-fi
+# single_run="roberta_base_detr_tableLI"
+# if [[ " ${run} " =~ " ${single_run} " ]]; then
+#   extra_params="--table_transformer_predictions_dir ${TABLE_TRANSFORMER_PREDICTIONS_DIR} --crop_bboxes_filename docile_td11.json --line_item_bboxes_filename docile_td11_tlid13.json"
+#   run_inference ${CMD_ROBERTA} $split roberta_base_65925 $single_run ${extra_params}
+# fi
 
-# Models with synthetic pretraining
-single_run="roberta_base_with_synthetic_pretraining"
-if [[ " ${run} " =~ " ${single_run} " ]]; then
-  run_inference ${CMD_ROBERTA} $split roberta_base_with_synthetic_pretraining_125370 $single_run
-fi
+# # Models with synthetic pretraining
+# single_run="roberta_base_with_synthetic_pretraining"
+# if [[ " ${run} " =~ " ${single_run} " ]]; then
+#   run_inference ${CMD_ROBERTA} $split roberta_base_with_synthetic_pretraining_125370 $single_run
+# fi
 
-single_run="roberta_ours_with_synthetic_pretraining"
-if [[ " ${run} " =~ " ${single_run} " ]]; then
-  run_inference ${CMD_ROBERTA} $split roberta_ours_with_synthetic_pretraining_227640 $single_run
-fi
+# single_run="roberta_ours_with_synthetic_pretraining"
+# if [[ " ${run} " =~ " ${single_run} " ]]; then
+#   run_inference ${CMD_ROBERTA} $split roberta_ours_with_synthetic_pretraining_227640 $single_run
+# fi
 
-single_run="layoutlmv3_ours_with_synthetic_pretraining"
-if [[ " ${run} " =~ " ${single_run} " ]]; then
-  run_inference ${CMD_LAYOUTLMV3} $split layoutlmv3_ours_with_synthetic_pretraining_158436 $single_run
-fi
+# single_run="layoutlmv3_ours_with_synthetic_pretraining"
+# if [[ " ${run} " =~ " ${single_run} " ]]; then
+#   run_inference ${CMD_LAYOUTLMV3} $split layoutlmv3_ours_with_synthetic_pretraining_158436 $single_run
+# fi
